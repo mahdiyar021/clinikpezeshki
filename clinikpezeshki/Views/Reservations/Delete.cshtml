@@ -1,0 +1,46 @@
+﻿@model clinikpezeshki.Models.Entitys.Reservation
+
+@{
+    ViewData["Title"] = "پاک کردن ملاقات";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h3>پاک کردن ملاقات</h3>
+<br />
+<h4 class="text-danger text-center">با پاک کردن این ملاقات تمام اطلاعات این ملاقات پاک می شود</h4>
+<dl class="row">
+    <dt class="col-sm-2">
+        نام و نام خانوادگی دکتر
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Doctor.FullName)
+    </dd>
+    <dt class="col-sm-2">
+        نام و نام خانوادگی بیمار
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Patient.FullName)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Time)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Time)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.date)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.date)
+    </dd>
+</dl>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input class="btn btn-danger btn-lg" type="submit" value="پاک شود" />
+</form>
+
+<div class="d-grid gap-2 d-md-block m-4">
+    <br />
+    <br />
+    <a class="btn btn-outline-warning " asp-action="Edit" asp-route-id="@Model?.Id">ویرایش ملاقات</a>
+    <a class="btn btn-outline-primary " asp-action="Index">برگشت به ملاقات ها</a>
+</div>

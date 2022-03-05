@@ -1,0 +1,27 @@
+﻿@model MessageboxVm
+@if (Model?.IsDanger==true)
+{
+    <div class="position-fixed row d-flex m-3 justify-content-end" style="z-index: 11">
+        <div class="toast end-0 top-0 text-white bg-danger border-0 shadow show fade" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @Model.MsgTxt
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}
+@if (Model?.IsDanger==false)
+{
+    <div class="position-fixed row d-flex m-3 justify-content-end" style="z-index: 11">
+        <div class="toast end-0 top-0 text-white bg-success border-0 shadow show fade" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @Model.MsgTxt
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}

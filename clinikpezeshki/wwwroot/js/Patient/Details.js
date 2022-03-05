@@ -1,0 +1,1 @@
+﻿$(document).ready(function () { $(".sampleTable").fancyTable({ pagination: true, pagination: 'btn btn-primary', inputPlaceholder: 'جستجو', globalSearch: true }); });

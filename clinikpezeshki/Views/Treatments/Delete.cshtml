@@ -1,0 +1,28 @@
+﻿@model clinikpezeshki.Models.Entitys.Treatment
+
+@{
+    ViewData["Title"] = "پاک کردن درمان";
+    Layout = "~/Views/Shared/_LayoutDoctor.cshtml";
+}
+<h3>پاک کردن درمان</h3>
+<br />
+<h4 class="text-danger text-center">با پاک کردن این درمان تمام پرداخت هایی که از این درمان استفاده می کنند پاک می شوند</h4>
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+</dl>
+<form class="row" asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input class="btn btn-danger btn-lg" type="submit" value="پاک شود" />
+</form>
+<div class="d-grid gap-2 d-md-block m-4">
+    <br />
+    <br />
+    <a class="btn btn-outline-warning " asp-action="Edit" asp-route-id="@Model?.Id">ویرایش درمان</a>
+    <a class="btn btn-outline-primary " asp-action="Index">برگشت به درمان ها</a>
+</div>
+

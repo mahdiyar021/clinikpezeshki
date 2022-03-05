@@ -1,0 +1,38 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.Treatment>
+
+@{
+    ViewData["Title"] = "درمان ها";
+    Layout = "~/Views/Shared/_LayoutDoctor.cshtml";
+}
+<h1>درمان ها</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Create">درمان جدید</a>
+</p>
+<table class="table table-hover table-striped sampleTable">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نوع درمان</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var Treatment in Model)
+        {
+            <tr>
+                <th scope="row">@Treatment.Id</th>
+                <td>@Treatment.Name</td>
+                <td>
+                    <ul class="nav gap-2">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@Treatment.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@Treatment.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

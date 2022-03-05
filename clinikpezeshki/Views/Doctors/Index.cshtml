@@ -1,0 +1,52 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.Doctor>
+
+@{
+    ViewData["Title"] = "دکتر ها";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h1>دکتر ها</h1>
+<br />
+<p>
+    <a class="btn btn-primary" asp-action="Create">دکتر جدید</a>
+</p>
+<table class="table table-hover table-striped sampleTable">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام و نام خانوادگی</th>
+            <th scope="col">کد ملی</th>
+            <th scope="col">تخصص</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var Doctor in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Doctor.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Doctor.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Doctor.NationalId)
+                </td>
+                <td>
+                      @Html.DisplayFor(modelItem => Doctor.Expertise.Name)
+                </td>
+                <td>
+                    <ul class="nav gap-2">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@Doctor.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@Doctor.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                        <li class="nav-item"><a asp-action="Details" asp-route-id="@Doctor.Id" class="btn btn-outline-info">جزئیات</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

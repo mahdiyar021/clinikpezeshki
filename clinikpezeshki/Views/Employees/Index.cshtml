@@ -1,0 +1,41 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.Employee>
+
+@{
+    ViewData["Title"] = "کارمندان";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h1>کارمندان</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Create">کارمند جدید</a>
+</p>
+<table class="table table-hover table-striped sampleTable">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام و نام خانوادگی</th>
+            <th scope="col">کد ملی</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Employee in Model)
+        {
+            <tr>
+                <th scope="row">@Employee.Id</th>
+                <td>@Employee.FullName</td>
+                <td>@Employee.NationalId</td>
+                <td>
+                    <ul class="nav gap-2">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@Employee.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@Employee.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                        <li class="nav-item"><a asp-action="Details" asp-route-id="@Employee.Id" class="btn btn-outline-info">جزئیات</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

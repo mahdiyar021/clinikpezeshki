@@ -1,0 +1,28 @@
+﻿@model clinikpezeshki.Models.Entitys.Expertise
+
+@{
+    ViewData["Title"] = "تخصص جدید";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h4>تخصص جدید</h4>
+<br />
+<form class="row g-3" asp-action="Create">
+    <div class="col-md-6 form-group">
+        <label asp-for="Name" class="control-label"></label>:<br />
+        <input asp-for="Name" class="form-control m-1" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-12 form-group ">
+        <input type="submit" value="ساختن" class="btn btn-outline-primary opacity-75 float-end" />
+    </div>
+</form>
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به تخصص ها</a>
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

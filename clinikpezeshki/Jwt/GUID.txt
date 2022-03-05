@@ -1,0 +1,41 @@
+
+for adding new roles you must first add your roles to enum then jwsclaimrolevalue and then change the function GetAccessClaim
+
+in jwtservices
+
+
+note:for add userclaim first must be a role then add id and name 
+
+builder.Services.AddScoped<IJwtServices, JwtServices>();
+
+
+add to appSetting 
+
+  "Jwt": {
+    "SecretKey": "Key",
+    "Issuer": "",
+    "Audience": ""
+  }
+
+
+add to base control for readingclaim
+
+        protected async Task<IEnumerable<Claim>?> GetUserClaim()
+
+        =>await Task.Run(()=>
+        {
+            HttpContext.Items.TryGetValue(JwtConsts.HttpContextItemkey, out object? value);
+
+            return value as IEnumerable<Claim>;
+
+        });
+
+        protected async Task<IEnumerable<Claim>?> GetUserClaim(CancellationToken cancellationToken)
+
+        =>await Task.Run(()=>
+        {
+            HttpContext.Items.TryGetValue(JwtConsts.HttpContextItemkey, out object? value);
+
+            return value as IEnumerable<Claim>;
+
+        },cancellationToken);

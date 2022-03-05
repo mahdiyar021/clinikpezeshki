@@ -1,0 +1,67 @@
+﻿@model clinikpezeshki.Models.Entitys.Prescription
+@{
+    ViewData["Title"] = "ویرایش نسخه";
+    Layout = "~/Views/Shared/_LayoutDoctor.cshtml";
+    List<Medicine> medicines = ViewBag.MedicineList as List<Medicine>;
+    List<HasMedicine> HasMedicines = new List<HasMedicine>();
+    List<MedicinePrescription> MedicinePrescriptions = Model.MedicinePrescriptions as List<MedicinePrescription>;
+    for (int i = 0; i<medicines.Count; ++i)
+    {
+        for (int j = 0; j < Model.MedicinePrescriptions.Count; ++j)
+        {
+            if (medicines[i].Id ==MedicinePrescriptions[j].Medicine.Id)
+            {
+                HasMedicines.Add(new HasMedicine() { IsHasMedicine = true, MedicineId = medicines[i].Id });
+            }
+        }
+        if (HasMedicines.Contains(new HasMedicine() { IsHasMedicine = true, MedicineId = medicines[i].Id }))
+            HasMedicines.Add(new HasMedicine() { IsHasMedicine = false, MedicineId = medicines[i].Id });
+    }
+}
+
+<h4>ویرایش نسخه</h4>
+<br />
+<form class="row g-3" asp-action="Edit">
+    <div class="col-md-6 form-group">
+        <label asp-for="DateTime" class="control-label"></label>:<br />
+        <input asp-for="DateTime" class="form-control m-1" />
+        <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="InstroductionForUse" class="control-label"></label>:<br />
+        <textarea asp-for="InstroductionForUse" class="form-control m-1"></textarea>
+        <span asp-validation-for="InstroductionForUse" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        @for (int i = 0; i <medicines.Count ; i++)
+        {
+            <div class="form-check inline-block">
+                <input asp-for="@HasMedicines[i].IsHasMedicine" class="form-check-input">
+                <input type="hidden" asp-for="@HasMedicines[i].MedicineId">
+                <label class="form-check-label" asp-for="@HasMedicines[i].IsHasMedicine">
+                    @medicines[i].Name
+                </label>
+            </div>
+        }
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="PatientId" class="control-label"></label>:<br />
+        <select asp-for="PatientId" class="form-control m-1" asp-items="ViewBag.PatientId"></select>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="DoctorId" class="control-label"></label>:<br />
+        <select asp-for="DoctorId" class="form-control m-1" asp-items="ViewBag.DoctorId"></select>
+    </div>
+    <div class="col-md-6 form-group">
+        <input type="submit" value="ویرایش" class="btn btn-warning opacity-75 float-end" />
+    </div>
+</form>
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به نسخه ها</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

@@ -1,0 +1,38 @@
+﻿@model OnlineReservation
+@{
+    ViewData["Title"] = "درخواست رزرو آنلاین";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>درخواست رزرو آنلاین</h2>
+<p class="text-center h4 lead m-5">لطفا شماره تماس و مشخصات خود را در فرم زیر وارد نمایید، تا برای رزرو وقت قطعی و ثبت تاریخ و ساعت، همکاران ما با شما تماس بگیرند</p>
+<div class="row">
+    <form class="col-md-6 d-grid gap-3" asp-action="OnlineReserve">
+        <div class="form-group">
+            <label asp-for="FullName" class="control-label"></label>:<br />
+            <input asp-for="FullName" class="form-control form-control-lg m-2" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phonenumber" class="control-label"></label>:<br />
+            <input asp-for="Phonenumber" class="form-control form-control-lg m-2" />
+            <span asp-validation-for="Phonenumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Instroduction" class="control-label"></label>:<br />
+            <textarea asp-for="Instroduction" class="form-control form-control-lg m-2" ></textarea>
+            <span type="text" asp-validation-for="Instroduction" class="text-danger"></span>
+        </div>
+        <div class="form-group m-2">
+            <input type="submit" value="ارسال درخواست" class="btn btn-lg btn-primary" />
+        </div>
+    </form>
+    <div class="col-md-6">
+        <img src="~/img/photo_2020-11-29_13-59-23.jpg" class="img-fluid" />
+    </div>
+</div>
+@section Scripts
+{
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

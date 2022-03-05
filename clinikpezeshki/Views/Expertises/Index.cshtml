@@ -1,0 +1,38 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.Expertise>
+
+@{
+    ViewData["Title"] = "تخصص ها";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h1>تخصص ها</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Create">تخصص جدید</a>
+</p>
+<table class="table table-hover table-striped sampleTable">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var Expertise in Model)
+        {
+            <tr>
+                <th scope="row">@Expertise.Id</th>
+                <td>@Expertise.Name</td>
+                <td>
+                    <ul class="nav gap-2 ">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@Expertise.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@Expertise.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

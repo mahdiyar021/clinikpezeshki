@@ -1,0 +1,38 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.HowPay>
+
+@{
+    ViewData["Title"] = "انواع روش پرداخت";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<p>
+    <a class="btn btn-primary" asp-action="Create">روش پرداخت جدید </a>
+</p>
+<h1 class="m-4">انواع روش پرداخت</h1>
+<table class="table table-hover table-striped sampleTable"">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var HowPay in Model)
+        {
+            <tr>
+                <th scope="row">@HowPay.Id</th>
+                <td>@HowPay.Name</td>
+                <td>
+                    <ul class="nav gap-3">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@HowPay.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@HowPay.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

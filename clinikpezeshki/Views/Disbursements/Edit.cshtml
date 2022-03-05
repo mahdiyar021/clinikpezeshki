@@ -1,0 +1,41 @@
+﻿@model DisbursementsCreateVm
+
+@{
+    ViewData["Title"] = "ویرایش پرداخت";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h4>ویرایش پرداخت</h4>
+<br />
+<form class="row g-3" asp-action="Edit">
+    <div class="col-md-6  form-group">
+        <label asp-for="@Model.Disbursement.Cost" class="control-label"></label>
+        <input asp-for="@Model.Disbursement.Cost" class="form-control m-1" />
+        <span asp-validation-for="@Model.Disbursement.Cost" class="text-danger"></span>
+    </div>
+    <div class="col-md-6  form-group">
+        <label asp-for="@Model.Disbursement.PatientId" class="control-label"></label>
+        <input asp-for="@Model.Disbursement.PatientId" class="form-control m-1" />
+        <span asp-validation-for="@Model.Disbursement.PatientId" class="text-danger"></span>
+    </div>
+        <div class="col-md-6 form-group">
+        <label asp-for="@Model.Disbursement.Treatment.Name" class="control-label"></label>:<br />
+        <select class="form-select" asp-for="@Model.Disbursement.TreatmentId" class="form-control" asp-items="@Model.Treatments"></select>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="@Model.Disbursement.HowPay.Name" class="control-label"></label>:<br />
+        <select class="form-select" asp-for="@Model.Disbursement.HowPayId" class="form-control" asp-items="@Model.HowPays"></select>
+    </div>
+    <input type="hidden" asp-for="@Model.Disbursement.Id" />
+    <div class="col-12 form-group">
+        <input type="submit" value="ویرایش" class="btn btn-warning opacity-75 float-end" />
+    </div>
+</form>
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به پرداخت ها</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

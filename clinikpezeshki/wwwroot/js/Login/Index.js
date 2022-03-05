@@ -1,0 +1,1 @@
+﻿$(document).ready(function () { $("#emp").addClass("active"); $("#emp").addClass("show"); $("#activelink").addClass("active"); });var toastElList=[].slice.call(document.querySelectorAll('.toast'));var toastList=toastElList.map(function (toastEl){return new bootstrap.Toast(toastEl, option);});

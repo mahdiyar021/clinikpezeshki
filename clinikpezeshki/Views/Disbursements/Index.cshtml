@@ -1,0 +1,46 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.Disbursement>
+
+@{
+    ViewData["Title"] = "پرداختی ها";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h1>پرداختی ها</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Create">پرداختی جدید</a>
+</p>
+<table class="table table-hover table-striped sampleTable">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">هزینه</th>
+            <th scope="col">نوع درمان</th>
+            <th scope="col">نوع پرداخت</th>
+            <th scope="col">کد مریض</th>
+            <th scope="col">اسم مریض</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var Disbursement in Model)
+        {
+            <tr>
+                <th scope="row">@Disbursement.Id</th>
+                <td>@Disbursement.Cost</td>
+                <td>@Disbursement.Treatment.Name</td>
+                <td>@Disbursement.HowPay.Name</td>
+                <td>@Disbursement.Patient.Id</td>
+                <td>@Disbursement.Patient.FullName</td>
+                <td>
+                    <ul class="nav gap-2">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@Disbursement.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@Disbursement.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

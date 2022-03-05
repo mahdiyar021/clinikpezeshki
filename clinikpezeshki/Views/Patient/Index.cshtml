@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "بیمار ها";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+@model PatientIndexVm
+
+@if (Model?.Message != null)
+{
+    <div class="row  d-flex justify-content-end">
+        <div class="toast end-0 top-0 text-white bg-danger border-0 m-3 shadow show" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @Model.Message
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}
+<a class="btn btn-primary" asp-action="New">مریض جدید</a>
+<table class="table table-hover table-striped sampleTable">
+
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام و نام خانوادگی</th>
+            <th scope="col">کد ملی</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var Petient in Model.PatientsVm)
+        {
+            <tr>
+                <th scope="row">@Petient.Id</th>
+                <td>@Petient.FullName</td>
+                <td>@Petient.NationalId</td>
+                <td>
+                    <ul class="nav gap-2">
+                        <li class="nav-item"><a asp-action="Edit" asp-route-id="@Petient.Id" class="btn btn-outline-warning">ویرایش</a></li>
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@Petient.Id" class="btn btn-outline-danger">پاک کردن</a></li>
+                        <li class="nav-item"><a asp-action="Details" asp-route-id="@Petient.Id" class="btn btn-outline-info">جزئیات</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}

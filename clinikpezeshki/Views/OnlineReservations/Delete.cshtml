@@ -1,0 +1,41 @@
+﻿@model clinikpezeshki.Models.Entitys.OnlineReservation
+
+@{
+    ViewData["Title"] = "رزرو آنلاین";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+
+<h4>رزرو آنلاین</h4>
+<hr />
+<dl class="row text-center lead fw-bold">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FullName)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FullName)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Phonenumber)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Phonenumber)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Instroduction)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Instroduction)
+    </dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input class="btn btn-outline-danger" type="submit" value="پاک شود" />
+</form>
+<div class="d-grid gap-2 d-md-block m-4">
+    <br />
+    <br />
+    <a class="btn btn-outline-primary " asp-action="Index">برگشت به رزرو آنلاین ها</a>
+</div>
+

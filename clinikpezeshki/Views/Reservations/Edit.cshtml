@@ -1,0 +1,42 @@
+﻿@model clinikpezeshki.Models.Entitys.Reservation
+
+@{
+    ViewData["Title"] = "ویرایش ملاقات";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h4>ویرایش ملاقات</h4>
+<br />
+<form class="row g-3" asp-action="Edit">
+    <div class="col-md-6 form-group">
+        <label asp-for="DoctorId" class="control-label"></label>:<br />
+        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
+        <span asp-validation-for="DoctorId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="PatientId" class="control-label"></label>:<br />
+        <select asp-for="PatientId" class="form-control" asp-items="ViewBag.PatientId"></select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Time" class="control-label"></label>:<br />
+        <input asp-for="Time" class="form-control  m-1" />
+        <span asp-validation-for="Time" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="date" class="control-label"></label>:<br />
+        <input asp-for="date" class="form-control  m-1" />
+        <span asp-validation-for="date" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+               <input type="submit" value="ویرایش" class="btn btn-warning opacity-75 float-end" />
+    </div>
+</form>
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به ملاقات ها</a>
+</div>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

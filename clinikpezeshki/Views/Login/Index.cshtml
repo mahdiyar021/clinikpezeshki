@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "صفحه ی ورود";
+}
+@model LoginIndexVm
+@if (Model.Message != null)
+{
+    <div class="row  d-flex justify-content-end">
+        <div class="toast end-0 top-0 text-white bg-danger border-0 m-3 shadow show" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @Model.Message
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}
+<div id="Log" class="row m-3">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a id="activelink" class="nav-link" data-bs-toggle="tab" href="#emp">کارمند</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#doc">دکتر</a>
+        </li>
+    </ul>
+    <div class="tab-content border border-top-0 rounded-bottom float-start shadow">
+        <div id="emp" class="tab-pane container fade">
+            <br />
+            <form asp-action="LoginEmployee">
+                <label asp-for="UserName" class="form-label"></label>:
+                <br />
+                <input asp-for="UserName" class="form-control" placeholder="نام کاربری را وارد کنید " />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+                <br />
+                <label asp-for="Password" class="form-label"></label>:
+                <br />
+                <input asp-for="Password" class="form-control" placeholder="رمز عبور را وارد کنید " />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <br />
+                <button type="submit" class="btn btn-outline-primary opacity-75 float-end ">ورود</button>
+                <br />
+            </form>
+        </div>
+        <div id="doc" class="tab-pane container fade ">
+            <br />
+            <form asp-action="LoginDoctor">
+                <label asp-for="UserName" class="form-label"></label>:
+                <br />
+                <input asp-for="UserName" class="form-control" placeholder="نام کاربری را وارد کنید " />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+                <br />
+                <label asp-for="Password" class="form-label"></label>:
+                <br />
+                <input asp-for="Password" class="form-control" placeholder="رمز عبور را وارد کنید " />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <br />
+                <button type="submit" class="btn btn-outline-primary opacity-75 float-end ">ورود</button>
+                <br />
+            </form>
+        </div>
+        <br />
+    </div>
+</div>
+@section Css{
+        @{
+
+    await  Html.RenderPartialAsync("_IndexCss");
+
+}
+}
+@section Scripts{
+    @{
+    await  Html.RenderPartialAsync("_ValidationScriptsPartial");
+    await  Html.RenderPartialAsync("_IndexScript");
+    }
+}

@@ -1,0 +1,34 @@
+﻿@model Medicine
+
+@{
+    ViewData["Title"] = "داروی جدید";
+    Layout = "~/Views/Shared/_LayoutDoctor.cshtml";
+}
+
+<h4>داروی جدید</h4>
+<br />
+<form class="row g-3" asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Name" class="control-label"></label>:<br />
+        <input asp-for="Name" class="form-control m-1" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="PersionName" class="control-label"></label>:<br />
+        <input asp-for="PersionName" class="form-control m-1" />
+        <span asp-validation-for="PersionName" class="text-danger"></span>
+    </div>
+    <div class="col-12 form-group ">
+        <input type="submit" value="ساختن" class="btn btn-outline-primary opacity-75 float-end" />
+    </div>
+</form>
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به داروها</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

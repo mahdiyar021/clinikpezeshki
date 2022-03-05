@@ -1,0 +1,87 @@
+﻿@model clinikpezeshki.Models.Entitys.Employee
+
+@{
+    ViewData["Title"] = "ویرایش کارمند";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h4>ویرایش کارمند</h4>
+<br />
+<form class="row g-3" asp-action="Edit">
+    <div class="col-md-6 form-group">
+        <label asp-for="Name" class="control-label"></label>:<br />
+        <input asp-for="Name" class="form-control m-1" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="LastName" class="control-label"></label>:<br />
+        <input asp-for="LastName" class="form-control m-1" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Username" class="control-label"></label>:<br />
+        <input asp-for="Username" class="form-control m-1" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Password" class="control-label"></label>:<br />
+        <input asp-for="Password" class="form-control m-1" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Age" class="control-label"></label>:<br />
+        <input asp-for="Age" class="form-control m-1" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group gap-1">
+        <div>
+            <label asp-for="Gender" class="control-label"></label>:<br />
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="Gender">مرد</label>
+            <input class="form-check-input" type="radio" id="Gender" name="Gender" value="1" />
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="Gender">زن</label>
+            <input class="form-check-input" type="radio" id="Gender" name="Gender" value="0" />
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="Gender">ناشناس</label>
+            <input class="form-check-input" type="radio" id="Gender" name="Gender" value="2" checked />
+        </div>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="NationalId" class="control-label"></label>:<br />
+        <input asp-for="NationalId" class="form-control m-1" />
+        <span asp-validation-for="NationalId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="HomeNumber" class="control-label"></label>:<br />
+        <input asp-for="HomeNumber" class="form-control m-1" />
+        <span asp-validation-for="HomeNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Phonenumber" class="control-label"></label>:<br />
+        <input asp-for="Phonenumber" class="form-control m-1" />
+        <span asp-validation-for="Phonenumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 form-group">
+        <label asp-for="Adrress" class="control-label"></label>:<br />
+        <textarea asp-for="Adrress" class="form-control m-1"></textarea>
+        <span asp-validation-for="Adrress" class="text-danger"></span>
+    </div>
+    <br />
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <input type="submit" value="ویرایش" class="btn btn-warning opacity-75 float-end" />
+    </div>
+</form>
+<br />
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به کارمند ها</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

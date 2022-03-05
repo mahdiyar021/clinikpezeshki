@@ -1,0 +1,47 @@
+﻿@model clinikpezeshki.Models.Entitys.Prescription
+
+@{
+    ViewData["Title"] = "جزئیات نسخه";
+    Layout = "~/Views/Shared/_LayoutDoctor.cshtml";
+}
+<h1>جزئیات نسخه</h1>
+<br />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.DateTime)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DateTime)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.InstroductionForUse)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.InstroductionForUse)
+    </dd>
+    <dt class="col-sm-2">
+        نام و نام خانوادگی بیمار
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Patient.FullName)
+    </dd>
+    <dt class="col-sm-2">
+        نام و نام خانوادگی دکتر
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Doctor.FullName)
+    </dd>
+        <dt class="col-sm-2">
+        دارو ها
+    </dt>
+    <dd class="col-sm-10">
+        @foreach(var med in Model.MedicinePrescriptions)
+        {
+            @med.Medicine?.PersionName  
+        }
+    </dd>
+</dl>
+<div class="d-grid gap-2 d-md-block m-4">
+    <a class="btn btn-outline-warning ms-2" asp-action="Edit" asp-route-id="@Model?.Id">نسخه ویرایش</a>
+    <a class="btn btn-outline-primary ms-2" asp-action="Index">برگشت به نسخه ها</a>
+</div>

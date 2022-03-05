@@ -1,0 +1,26 @@
+﻿@model clinikpezeshki.Models.Entitys.HowPay
+
+@{
+    ViewData["Title"] = "روش پرداخت جدید";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h4>روش پرداخت جدید</h4>
+<br />
+        <form class="row g-3" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6 form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control m-1" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 form-group">
+                 <input type="submit" value="ساختن" class="btn btn-outline-primary opacity-75 float-end" />
+            </div>
+        </form>
+<div class="col-12">
+    <a class="btn btn-outline-primary m-2" asp-action="Index">برگشت به انواع روش پرداخت ها</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

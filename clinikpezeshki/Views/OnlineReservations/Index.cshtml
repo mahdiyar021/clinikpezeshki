@@ -1,0 +1,38 @@
+﻿@model IEnumerable<clinikpezeshki.Models.Entitys.OnlineReservation>
+
+@{
+    ViewData["Title"] = "رزرو آنلاین";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<h1 claas="m-4">رزرو آنلاین</h1>
+
+<table class="table table-hover table-striped sampleTable">
+    <thead class="mt-2">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام و نام خانوادگی</th>
+            <th scope="col">شماره تماس</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var OnlineReservation in Model)
+        {
+            <tr>
+                <th scope="row">@OnlineReservation.Id</th>
+                <td>@OnlineReservation.FullName</td>
+                <td>@OnlineReservation.Phonenumber</td>
+                <td>
+                    <ul class="nav gap-2 ">
+                        <li class="nav-item"><a asp-action="Delete" asp-route-id="@OnlineReservation.Id" class="btn btn-outline-primary">انتخاب</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{
+       await  Html.RenderPartialAsync("_IndexScripts");
+    }
+}
